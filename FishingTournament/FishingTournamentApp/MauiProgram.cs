@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui;
+using FishingTournamentApp.Contracts;
+using FishingTournamentApp.Services.Managers;
 using FishingTournamentApp.ViewModels;
 using FishingTournamentApp.Views;
 using Syncfusion.Maui.Core.Hosting;
@@ -25,6 +27,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MyTournamentsView>();
         builder.Services.AddSingleton<UserTournamentViewModel>();
         builder.Services.AddSingleton<UserTournamentView>();
+        builder.Services.AddSingleton<IUserTournamentManager, UserTournamentManager>();
 
 		return builder.Build();
 	}
