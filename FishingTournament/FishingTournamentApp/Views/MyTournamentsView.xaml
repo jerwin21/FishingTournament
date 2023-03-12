@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FishingTournamentApp.Views.MyTournamentsView"
+             xmlns:contracts="clr-namespace:FishingTournamentApp.Contracts"
+             xmlns:viewModel="clr-namespace:FishingTournamentApp.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="viewModel:MyTournamentsViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:SelectedItemEventArgsConverter x:Key="SelectedItemEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid
+            ColumnDefinitions="*,*"
+            ColumnSpacing="5"
+            RowDefinitions="30,45, *"
+            RowSpacing="5">
+        <ContentView Grid.ColumnSpan="2"
+                     Grid.Row="0"
+                     Padding="3">
+            <Border>
+                <SearchBar Placeholder="Search My Tournaments"></SearchBar>
+            </Border>
+            
+        </ContentView>
+
+        <ContentView x:Name="StatusPicker"
+                  Grid.Column="0"
+                  Grid.Row="1">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Status" VerticalOptions="Center" FontSize="10"/>
+                <Picker x:Name="StatusFilterPicker"
+                            Title="Status"
+                            ItemsSource="{Binding StatusFlags}"
+                            SelectedItem="{Binding DefaultStatusFlag}"
+                            SelectedIndexChanged="StatusPickerSelectionChanged"
+                            HeightRequest="37"
+                            VerticalOptions="Center"
+                            FontSize="10">
+                </Picker>
+
+            </StackLayout>
+        </ContentView> 
+
+                <ContentView x:Name="RolePicker"
+                       Grid.Column="1"
+                       Grid.Row="1">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label Text="Role" VerticalOptions="Center" FontSize="10"/>
+                    <Picker x:Name="RoleFilterPicker"
+                            Title="Role"
+                            ItemsSource="{Binding RoleFlags}"
+                            SelectedItem="{Binding DefaultRoleFlag}"
+                            SelectedIndexChanged="RolePickerSelectionChanged"
+                            VerticalOptions="Center"
+                            HeightRequest="37"
+                            FontSize="10">
+                    </Picker>
+                </StackLayout>
+            </ContentView>
+            
+            
+
+
+
+        <ContentView Grid.ColumnSpan="2"
+                     Grid.Row="3">
+            <CollectionView
+                ItemsSource="{Binding Tournaments}"
+                    SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="contracts:UserTournament">
+                        <Frame HeightRequest="125" Style="{StaticResource CardView}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTournamentChosen"/>
+                            </Frame.GestureRecognizers>
+                            <Grid Padding="0" ColumnDefinitions="125,*">
+                                <Image
+                                            Aspect="AspectFill"
+                                            HeightRequest="125"
+                                            Source="{Binding Tournament.TournamentImage}"
+                                            WidthRequest="125" />
+                                <VerticalStackLayout
+                                            VerticalOptions="Center"
+                                            Grid.Column="1"
+                                            Padding="10">
+                                    <Label Style="{StaticResource LargeLabel}" Text="{Binding Tournament.Title}" />
+                                    <Label Style="{StaticResource MediumLabel}" Text="{Binding Tournament.Location}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                    </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ContentView>
+        
+        </Grid>
+
+</ContentPage>
