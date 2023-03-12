@@ -38,12 +38,8 @@ public partial class MyTournamentsView : ContentPage
     {
         if (sender is Frame tournamentFrame)
         {
-            var tournament = tournamentFrame.BindingContext;
-            Navigation.PushAsync(new UserTournamentView(new UserTournamentViewModel((UserTournament)tournament)));
+            if(tournamentFrame.BindingContext is UserTournament userTournament)
+                Navigation.PushAsync(new UserTournamentView(new UserTournamentViewModel(userTournament)));
         }
-
-        Console.Write("lessseeee");
-
-
     }
 }

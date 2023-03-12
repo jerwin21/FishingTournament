@@ -6,6 +6,8 @@ namespace FishingTournamentApp.ViewModels;
 
 public partial class MyTournamentsViewModel : BaseViewModel
 {
+    private IUserTournamentManager _TournamentManager;
+
     public ObservableCollection<UserTournament> Tournaments { get; set;  }
 
     public MyTournamentFilterDescription FilterDescription { get; set; }
@@ -20,32 +22,13 @@ public partial class MyTournamentsViewModel : BaseViewModel
 
     //TODO: eventually will need to bring in services/managers that will do the work of getting stuff from our db
 
-    public MyTournamentsViewModel()
+    public MyTournamentsViewModel(IUserTournamentManager tournamentManager)
     {
+        _TournamentManager = tournamentManager;
+
+        Tournaments = _TournamentManager.GetUserTournaments().ToObservableCollection();
+
         //TODO: once db and api are set up we should grab these from there
-        Tournaments = new ObservableCollection<UserTournament>
-        {
-            new UserTournament
-            {
-                Tournament = new Tournament
-                {
-                    Title = "Test 1",
-                    TournamentId = 123,
-                    Location = "ur moms house",
-                },
-                Role = TournamentRoleFlag.Angler,
-            },
-            new UserTournament
-            {
-                Tournament = new Tournament
-                {
-                    Title = "Test 2",
-                    TournamentId = 234,
-                    Location = "ur dads house",
-                },
-                Role = TournamentRoleFlag.Director,
-            }
-        };
 
         FilterDescription = new MyTournamentFilterDescription
         {
