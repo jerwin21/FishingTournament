@@ -4,7 +4,7 @@ using Syncfusion.Maui.DataSource.Extensions;
 
 namespace FishingTournamentApp.ViewModels;
 
-public partial class MyTournamentsViewModel
+public partial class MyTournamentsViewModel : BaseViewModel
 {
     public ObservableCollection<UserTournament> Tournaments { get; set;  }
 

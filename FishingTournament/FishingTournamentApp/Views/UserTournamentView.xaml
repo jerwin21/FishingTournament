@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FishingTournamentApp.Views.UserTournamentView"
+             xmlns:contracts="clr-namespace:FishingTournamentApp.Contracts"
+             xmlns:viewModel="clr-namespace:FishingTournamentApp.ViewModels"
+             xmlns:controls="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="viewModel:UserTournamentViewModel">
+    <ContentPage.Content>
+        <Label Text="{Binding UserTournament.Tournament.Title}"></Label>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,5 @@
-﻿using FishingTournamentApp.ViewModels;
+﻿using FishingTournamentApp.Contracts;
+using FishingTournamentApp.ViewModels;
 
 namespace FishingTournamentApp.Views;
 
@@ -38,7 +39,9 @@ public partial class MyTournamentsView : ContentPage
         if (sender is Frame tournamentFrame)
         {
             var tournament = tournamentFrame.BindingContext;
+            Navigation.PushAsync(new UserTournamentView(new UserTournamentViewModel((UserTournament)tournament)));
         }
+
         Console.Write("lessseeee");
 
 

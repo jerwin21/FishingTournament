@@ -23,6 +23,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<MyTournamentsViewModel>();
 		builder.Services.AddSingleton<MyTournamentsView>();
+        builder.Services.AddSingleton<UserTournamentViewModel>();
+        builder.Services.AddSingleton<UserTournamentView>();
 
 		return builder.Build();
 	}
